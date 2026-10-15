@@ -1,0 +1,78 @@
+{
+  "tables": [
+    {
+      "_id": "0000",
+      "name": "报名",
+      "columns": [
+        {
+          "key": "0000",
+          "name": "名称",
+          "type": "text"
+        },
+        {
+          "key": "ZI2u",
+          "name": "校区",
+          "type": "single-select",
+          "data": {
+            "options": [
+              {
+                "id": "100001",
+                "name": "仙林",
+                "color": "#B3CEF3",
+                "textColor": "#202020"
+              },
+              {
+                "id": "100002",
+                "name": "鼓楼",
+                "color": "#FFDDA3",
+                "textColor": "#202020"
+              },
+              {
+                "name": "苏州",
+                "color": "#7BC8F6",
+                "textColor": "#202020",
+                "id": "869697"
+              }
+            ]
+          }
+        },
+        {
+          "key": "s7E2",
+          "name": "学号",
+          "type": "text",
+          "data": null
+        },
+        {
+          "key": "1KRk",
+          "name": "人数",
+          "type": "number",
+          "data": {
+            "format": "number",
+            "decimal": "dot",
+            "thousands": "no"
+          }
+        },
+        {
+          "key": "969m",
+          "name": "日期",
+          "type": "date",
+          "data": {
+            "format": "YYYY-MM-DD"
+          }
+        },
+        {
+          "key": "kZ8B",
+          "name": "邮箱",
+          "type": "email",
+          "data": null
+        },
+        {
+          "key": "uO5n",
+          "name": "备注",
+          "type": "long-text",
+          "data": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "app_type": "universal-app",
+  "app_name": "agent-B-full",
+  "enable_load_base_comments": true,
+  "settings": {
+    "nav_sections": [
+      {
+        "id": "0000",
+        "type": "pages"
+      }
+    ],
+    "pages": [
+      {
+        "id": "pB01",
+        "name": "报名表",
+        "type": "form",
+        "icon": "app-gallery",
+        "table_id": "0000",
+        "form_column_description_color": "#666666",
+        "success_message_option": null,
+        "add_duplicate_record_setting": {
+          "duplicate_prohibition": false,
+          "unique_column_keys": []
+        },
+        "static_elements": [
+          {
+            "key": "sp01",
+            "type": "split_line"
+          }
+        ],
+        "columns": [
+          {
+            "key": "0000",
+            "description": "",
+            "is_required": true,
+            "custom_name": "姓名",
+            "require_fill_checked": false,
+            "filters": [],
+            "filter_conjunction": "And",
+            "editable": true,
+            "enable_fill_default_value": false,
+            "default_value": "",
+            "enable_not_change_default_value": false,
+            "enable_scan_code_entry": false,
+            "options_show_type": "dropdown",
+            "permission": "rw",
+            "query_list": []
+          },
+          {
+            "key": "s7E2",
+            "description": "9位学号",
+            "is_required": true,
+            "custom_name": "",
+            "require_fill_checked": false,
+            "filters": [],
+            "filter_conjunction": "And",
+            "editable": true,
+            "enable_fill_default_value": false,
+            "default_value": "",
+            "enable_not_change_default_value": false,
+            "enable_scan_code_entry": false,
+            "options_show_type": "dropdown",
+            "permission": "rw",
+            "query_list": []
+          },
+          {
+            "key": "ZI2u",
+            "description": "",
+            "is_required": false,
+            "custom_name": "",
+            "require_fill_checked": false,
+            "filters": [],
+            "filter_conjunction": "And",
+            "editable": true,
+            "enable_fill_default_value": false,
+            "default_value": "",
+            "enable_not_change_default_value": false,
+            "enable_scan_code_entry": false,
+            "options_show_type": "dropdown",
+            "permission": "rw",
+            "query_list": []
+          },
+          {
+            "key": "969m",
+            "description": "",
+            "is_required": false,
+            "custom_name": "",
+            "require_fill_checked": false,
+            "filters": [],
+            "filter_conjunction": "And",
+            "editable": true,
+            "enable_fill_default_value": false,
+            "default_value": "",
+            "enable_not_change_default_value": false,
+            "enable_scan_code_entry": false,
+            "options_show_type": "dropdown",
+            "permission": "rw",
+            "query_list": []
+          },
+          {
+            "key": "kZ8B",
+            "description": "",
+            "is_required": false,
+            "custom_name": "",
+            "require_fill_checked": false,
+            "filters": [],
+            "filter_conjunction": "And",
+            "editable": true,
+            "enable_fill_default_value": false,
+            "default_value": "",
+            "enable_not_change_default_value": false,
+            "enable_scan_code_entry": false,
+            "options_show_type": "dropdown",
+            "permission": "rw",
+            "query_list": []
+          },
+          {
+            "key": "uO5n",
+            "description": "",
+            "is_required": false,
+            "custom_name": "",
+            "require_fill_checked": false,
+            "filters": [],
+            "filter_conjunction": "And",
+            "editable": true,
+            "enable_fill_default_value": false,
+            "default_value": "",
+            "enable_not_change_default_value": false,
+            "enable_scan_code_entry": false,
+            "options_show_type": "dropdown",
+            "permission": "rw",
+            "query_list": []
+          }
+        ],
+        "elements_order": [
+          {
+            "key": "0000",
+            "type": "column"
+          },
+          {
+            "key": "s7E2",
+            "type": "column"
+          },
+          {
+            "key": "sp01",
+            "type": "split_line"
+          },
+          {
+            "key": "ZI2u",
+            "type": "column"
+          },
+          {
+            "key": "969m",
+            "type": "column"
+          },
+          {
+            "key": "kZ8B",
+            "type": "column"
+          },
+          {
+            "key": "uO5n",
+            "type": "column"
+          }
+        ],
+        "page_permissions": {
+          "view_rows_permission": {
+            "permission_type": "default",
+            "permitted_roles": []
+          }
+        },
+        "trigger_workflow_option": {
+          "can_trigger_workflow": false
+        }
+      }
+    ],
+    "navigation": [
+      {
+        "id": "pB01",
+        "type": "page"
+      }
+    ],
+    "links": []
+  },
+  "app_theme_mode": "dark",
+  "app_theme_color": "#1D2838",
+  "version": 1
+}

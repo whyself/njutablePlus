@@ -1,0 +1,8 @@
+{
+  "name": "njutableplus",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/app-compiler.test.mjs tests/agent.test.mjs tests/chat-store.test.mjs tests/markdown.test.mjs tests/docs.test.mjs"
+  }
+}

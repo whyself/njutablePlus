@@ -1,0 +1,209 @@
+:root {
+  --accent: #6b2a8c;
+  --accent-strong: #561d74;
+  --accent-soft: #f3ebf8;
+  --bg: #ffffff;
+  --surface: #f7f5fa;
+  --border: #e7e1ee;
+  --text: #1e1a24;
+  --muted: #736c7e;
+  --user-bg: #f1e8f7;
+  --code-bg: #f5f2f8;
+  --ok: #1a7f37;
+  --fail: #cf222e;
+  --fail-soft: #fdecee;
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgba(40, 20, 60, .06), 0 4px 16px rgba(40, 20, 60, .06);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #b98ad8;
+    --accent-strong: #cfa6ea;
+    --accent-soft: #2c2236;
+    --bg: #17141b;
+    --surface: #201c26;
+    --border: #322b3b;
+    --text: #ece8f1;
+    --muted: #9b93a7;
+    --user-bg: #2f2439;
+    --code-bg: #221d29;
+    --ok: #3fb950;
+    --fail: #ff7b72;
+    --fail-soft: #3a1f24;
+    --on-accent: #1e1426;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; height: 100vh; display: flex; flex-direction: column;
+  font: 14px/1.65 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text); background: var(--bg);
+}
+svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+button { font: inherit; color: inherit; }
+
+/* ---------------------------------------------------------------- 顶栏 */
+
+header { display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 14px; border-bottom: 1px solid var(--border); }
+.logo { width: 28px; height: 28px; }
+.brand { flex: 1; display: flex; flex-direction: column; line-height: 1.25; }
+.title { font-weight: 650; letter-spacing: .2px; }
+.subtitle { font-size: 11.5px; color: var(--muted); }
+.icon-btn {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0;
+  border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer;
+}
+.icon-btn:hover { background: var(--surface); color: var(--text); }
+
+/* ---------------------------------------------------------------- 对话 */
+
+/* overflow-anchor: none：关掉浏览器的滚动锚定，滚动位置完全由 app.js 控制，避免两者打架造成闪动 */
+#log { flex: 1; min-height: 0; overflow-y: auto; overflow-anchor: none; padding: 16px 14px 8px; scrollbar-width: thin; }
+#msgs { display: flex; flex-direction: column; gap: 12px; }
+
+#empty { text-align: center; color: var(--muted); padding: 12vh 12px 0; }
+#msgs:not(:empty) + #empty { display: none; }
+#empty img { width: 56px; height: 56px; }
+#empty h2 { margin: 10px 0 4px; font-size: 16px; color: var(--text); }
+#empty p { margin: 0 0 12px; font-size: 13px; }
+#empty ul { list-style: none; margin: 0; padding: 0; display: inline-flex; flex-direction: column; gap: 4px; }
+#empty li { font-size: 13px; color: var(--text); opacity: .75; }
+#empty li::before { content: "“"; }
+#empty li::after { content: "”"; }
+
+.msg { max-width: 100%; word-break: break-word; }
+.msg.user {
+  align-self: flex-end; max-width: 88%; padding: 8px 12px; white-space: pre-wrap;
+  background: var(--user-bg); border-radius: 16px 16px 4px 16px;
+}
+.msg.user img { display: block; max-width: 160px; max-height: 160px; border-radius: 8px; margin-top: 6px; }
+.msg.error {
+  align-self: stretch; font-size: 12.5px; color: var(--fail); background: var(--fail-soft);
+  padding: 6px 10px; border-radius: 8px;
+}
+
+/* 助手回复：Markdown，无气泡 */
+.md > :first-child { margin-top: 0; }
+.md > :last-child { margin-bottom: 0; }
+.md p { margin: 0 0 .65em; }
+.md h1, .md h2, .md h3, .md h4, .md h5, .md h6 { margin: 1em 0 .45em; line-height: 1.35; }
+.md h1 { font-size: 1.3em; }
+.md h2 { font-size: 1.18em; }
+.md h3 { font-size: 1.06em; }
+.md h4, .md h5, .md h6 { font-size: 1em; }
+.md ul, .md ol { margin: 0 0 .65em; padding-left: 1.4em; }
+.md li { margin: .15em 0; }
+.md li > ul, .md li > ol { margin: .15em 0 0; }
+.md li::marker { color: var(--muted); }
+.md a { color: var(--accent); text-decoration: none; word-break: break-all; }
+.md a:hover { text-decoration: underline; }
+.md strong { font-weight: 650; }
+.md code { font: 12.5px/1.5 ui-monospace, "Cascadia Code", Consolas, monospace; background: var(--code-bg); padding: .1em .35em; border-radius: 5px; }
+.md pre { margin: 0 0 .75em; padding: 10px 12px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 10px; overflow-x: auto; }
+.md pre code { background: none; padding: 0; }
+.md blockquote { margin: 0 0 .65em; padding: 2px 12px; border-left: 3px solid var(--accent); color: var(--muted); }
+.md hr { border: 0; border-top: 1px solid var(--border); margin: 1em 0; }
+.md img { max-width: 100%; border-radius: 8px; }
+.md .table-wrap { overflow-x: auto; margin: 0 0 .75em; border: 1px solid var(--border); border-radius: 10px; }
+.md table { border-collapse: collapse; width: 100%; font-size: 13px; }
+.md th, .md td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.md th { background: var(--surface); font-weight: 600; }
+.md tr:last-child td { border-bottom: 0; }
+
+/* 思考过程、工具调用：默认收起的一行，点开看详情 */
+.fold { align-self: stretch; font-size: 12.5px; color: var(--muted); }
+.fold summary {
+  display: flex; align-items: center; gap: 6px; width: fit-content; max-width: 100%;
+  padding: 3px 10px 3px 6px; border-radius: 999px; cursor: pointer; list-style: none; user-select: none;
+}
+.fold summary::-webkit-details-marker { display: none; }
+.fold summary:hover { background: var(--surface); color: var(--text); }
+.fold summary svg { width: 14px; height: 14px; flex: none; }
+.fold .chev { transition: transform .15s; }
+.fold[open] .chev { transform: rotate(90deg); }
+.fold .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fold .body { margin: 4px 0 2px 12px; padding: 2px 0 2px 12px; border-left: 2px solid var(--border); }
+
+.think .body { white-space: pre-wrap; line-height: 1.6; }
+.think.live .name {
+  background: linear-gradient(90deg, var(--muted) 30%, var(--text) 50%, var(--muted) 70%) 0 0 / 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 1.6s linear infinite;
+}
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
+.tool .status { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.tool.ok .status { background: var(--ok); }
+.tool.fail .status { background: var(--fail); }
+.tool.fail .name { color: var(--fail); }
+.tool.running .status { width: 11px; height: 11px; border: 2px solid var(--border); border-top-color: var(--accent); animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.tool .label { margin: 6px 0 3px; font-weight: 600; }
+.tool .label:first-child { margin-top: 2px; }
+.tool pre {
+  margin: 0; max-height: 260px; overflow: auto; padding: 8px 10px; border-radius: 8px; color: var(--text);
+  background: var(--code-bg); font: 11.5px/1.5 ui-monospace, Consolas, monospace; white-space: pre-wrap; word-break: break-all;
+}
+
+/* ---------------------------------------------------------------- 输入区 */
+
+footer { padding: 8px 12px 12px; }
+.composer {
+  border: 1px solid var(--border); border-radius: 16px; background: var(--bg); box-shadow: var(--shadow);
+  padding: 8px 8px 6px 12px; transition: border-color .15s, box-shadow .15s;
+}
+.composer:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
+#input {
+  display: block; width: 100%; max-height: 180px; resize: none; border: 0; outline: 0; padding: 4px 0;
+  background: transparent; color: var(--text); font: inherit;
+}
+#input::placeholder { color: var(--muted); }
+.actions { display: flex; align-items: center; gap: 4px; margin: 2px 0 0 -6px; }
+.actions .hint { flex: 1; font-size: 11.5px; color: var(--muted); opacity: .8; }
+#send {
+  display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--accent); color: var(--on-accent); cursor: pointer; transition: background .15s, transform .1s;
+}
+#send:hover { background: var(--accent-strong); }
+#send:active { transform: scale(.94); }
+#send .i-stop { display: none; fill: currentColor; stroke: none; }
+#send.stop { background: var(--text); color: var(--bg); }
+#send.stop .i-send { display: none; }
+#send.stop .i-stop { display: block; }
+
+#attachments { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 0 6px; }
+#attachments:empty { display: none; }
+.chip { position: relative; }
+.chip img { display: block; width: 52px; height: 52px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); }
+.chip span {
+  position: absolute; left: 3px; bottom: 3px; font-size: 10px; line-height: 1.4; padding: 0 4px;
+  border-radius: 4px; background: rgba(0, 0, 0, .6); color: #fff;
+}
+.chip button {
+  position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; padding: 0; display: grid; place-items: center;
+  border: 0; border-radius: 50%; background: var(--text); color: var(--bg); font-size: 12px; line-height: 1; cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- 设置 */
+
+dialog {
+  width: min(360px, calc(100% - 32px)); padding: 20px; border: 1px solid var(--border); border-radius: 16px;
+  background: var(--bg); color: var(--text); box-shadow: 0 12px 40px rgba(20, 10, 30, .25);
+}
+dialog::backdrop { background: rgba(20, 12, 28, .35); backdrop-filter: blur(2px); }
+dialog h3 { margin: 0; font-size: 16px; }
+.dialog-hint { margin: 4px 0 14px; font-size: 12.5px; color: var(--muted); }
+dialog label { display: block; margin: 0 0 12px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+dialog input {
+  display: block; width: 100%; margin-top: 4px; padding: 8px 10px; font: 400 13.5px/1.4 system-ui, "Microsoft YaHei", sans-serif;
+  color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; outline: 0;
+}
+dialog input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); cursor: pointer; }
+.btn:hover { background: var(--surface); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { background: var(--accent-strong); }

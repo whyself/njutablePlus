@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>njutablePlus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img class="logo" src="../icons/icon-128.png" alt="">
+    <div class="brand">
+      <span class="title">njutablePlus</span>
+      <span class="subtitle">南大表格助手</span>
+    </div>
+    <button id="new-chat" class="icon-btn" type="button" title="新对话" aria-label="新对话">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+    </button>
+    <button id="open-settings" class="icon-btn" type="button" title="设置" aria-label="设置">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+    </button>
+  </header>
+
+  <main id="log">
+    <div id="msgs"></div>
+    <div id="empty">
+      <img src="../icons/icon-128.png" alt="">
+      <h2>用一句话改表格和应用</h2>
+      <p>先在浏览器里登录 table.nju.edu.cn，再告诉我你想做什么，比如：</p>
+      <ul>
+        <li>我有哪些表格？</li>
+        <li>给「报名表」加一列手机号</li>
+        <li>为这个表做一个报名表单应用</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="composer">
+      <div id="attachments"></div>
+      <textarea id="input" rows="1" placeholder="描述你想对表格或应用做的修改…"></textarea>
+      <div class="actions">
+        <label class="icon-btn" title="添加图片（也可直接粘贴）" aria-label="添加图片">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
+          <input id="file" type="file" accept="image/*" multiple hidden>
+        </label>
+        <span class="hint">Enter 发送 · Shift+Enter 换行</span>
+        <button id="send" type="button" title="发送" aria-label="发送">
+          <svg class="i-send" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+          <svg class="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <h3>模型设置</h3>
+      <p class="dialog-hint">使用 OpenAI 兼容接口，默认 DeepSeek。</p>
+      <label>Base URL<input name="baseUrl" required placeholder="https://api.deepseek.com"></label>
+      <label>API Key<input name="apiKey" type="password" required placeholder="sk-…" autocomplete="off"></label>
+      <label>模型<input name="model" required placeholder="deepseek-flash"></label>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel" formnovalidate>取消</button>
+        <button id="save-settings" class="btn primary" value="save">保存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
